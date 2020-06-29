@@ -1,0 +1,16 @@
+{
+  "require": {
+    "tencentcloud/tencentcloud-sdk-php": "3.0.*"
+  },
+  "autoload": {
+    "psr-4":{
+      "TencentWordpressSMS\\": "./"
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://mirrors.cloud.tencent.com/composer/"
+    }
+  }
+}
