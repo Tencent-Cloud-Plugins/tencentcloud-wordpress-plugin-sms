@@ -1,5 +1,4 @@
 === 腾讯云短信（SMS） ===
-Contributors: chahuang
 Tags: 腾讯云wordpress, SMS, 短信, 手机号, 腾讯云
 Donate link: https://openapp.qq.com/Wordpress/sms.html
 Requires at least: 5.0

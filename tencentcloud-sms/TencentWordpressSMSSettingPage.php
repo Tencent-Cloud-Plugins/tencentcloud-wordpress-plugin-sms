@@ -84,7 +84,7 @@ function TencentWordpressSMSSettingPage()
                             </tr>
 
                             <tr>
-                                <th scope="row"><label for="sms-option-secret-id">SecretId</label></th>
+                                <th scope="row"><label for="sms-option-secret-id"><h5>SecretId</h5></label></th>
                                 <td><input type="password" autocomplete="off"
                                            value="<?php echo $secretID; ?>" <?php if ( $customKey !== $SMSOptions::CUSTOM_KEY ) {
                                         echo 'disabled="disabled"';
@@ -94,7 +94,7 @@ function TencentWordpressSMSSettingPage()
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"><label for="sms-option-secret-key">SecretKey</label></th>
+                                <th scope="row"><label for="sms-option-secret-key"><h5>SecretKey</h5></label></th>
                                 <td><input type="password" autocomplete="off"
                                            value="<?php echo $secretKey; ?>" <?php if ( $customKey !== $SMSOptions::CUSTOM_KEY ) {
                                         echo 'disabled="disabled"';
@@ -107,7 +107,7 @@ function TencentWordpressSMSSettingPage()
                             </tr>
 
                             <tr>
-                                <th scope="row"><label for="sms-option-sdk-appid">SDKAppID</label></th>
+                                <th scope="row"><label for="sms-option-sdk-appid"><h5>SDKAppID</h5></label></th>
                                 <td><input type="text" name="sms-option-sdk-appid" autocomplete="off"
                                            value="<?php echo $SDKAPPID; ?>"
                                            id="sms-option-sdk-appid" size="65">
@@ -117,7 +117,7 @@ function TencentWordpressSMSSettingPage()
                                         SDKAppID或通过"创建应用"创建SDKAppID</p></td>
                             </tr>
                             <tr>
-                                <th scope="row"><label for="sms-option-sign">短信签名</label></th>
+                                <th scope="row"><label for="sms-option-sign"><h5>短信签名</h5></label></th>
                                 <td><input type="text" name="sms-option-sign" autocomplete="off"
                                            value="<?php echo $sign; ?>"
                                            id="sms-option-sign" size="65">
@@ -125,14 +125,14 @@ function TencentWordpressSMSSettingPage()
                             </tr>
 
                             <tr>
-                                <th scope="row"><label for="sms-option-tpl-id">模板ID</label></th>
+                                <th scope="row"><label for="sms-option-tpl-id"><h5>模板ID</h5></label></th>
                                 <td><input type="text" autocomplete="off" value="<?php echo $templateID; ?>"
                                            id="sms-option-tpl-id" size="65">
                                     <p class="description">审核通过的模板ID</p></td>
                             </tr>
 
                             <tr>
-                                <th scope="row"><label for="sms-option-tpl-id">验证码有效时间</label></th>
+                                <th scope="row"><label for="sms-option-tpl-id"><h5>验证码有效时间</h5></label></th>
                                 <td><input type="text" value="<?php echo $codeExpired ?>" autocomplete="off"
                                            id="sms-option-code-expired" size="65">
                                     <p class="description">单位：分钟，默认5。范围【1 - 360】</p>
@@ -148,7 +148,7 @@ function TencentWordpressSMSSettingPage()
                                     <p class="description">请与模板中参数个数保持一致，否则将导致短信发送失败。</p></td>
                             </tr>
                             <tr>
-                                <th scope="row"><label for="sms-option-sign">发送测试</label></th>
+                                <th scope="row"><label for="sms-option-sign"><h5>发送测试</h5></label></th>
                                 <td>
                                     <div class="card border-secondary mb-3" style="max-width: 35%">
                                         <div class="card-header">使用上方填写的参数进行测试。(仅测试，不生成发送记录)</div>
@@ -168,7 +168,7 @@ function TencentWordpressSMSSettingPage()
                             </tr>
 
                             <tr>
-                                <th scope="row"><label for="sms-option-sign">发文章/评论前需验证手机号</label></th>
+                                <th scope="row"><label for="sms-option-sign"><h5>发文章/评论前需验证手机号</h5></label></th>
                                 <td>
                                     <div class="custom-control custom-switch div_custom_switch_padding_top">
                                         <input type="checkbox" class="custom-control-input"
@@ -243,7 +243,7 @@ function TencentWordpressSMSSettingPage()
         </div>
         <button type="button" id="tencnetcloud-sms-setting-update-button" class="btn btn-primary">保存设置</button>
         <div style="text-align: center;flex: 0 0 auto;margin-top: 3rem;">
-            <a href="https://openapp.qq.com/Wordpress/sms.html" target="_blank">文档中心</a> | <a href="https://github.com/Tencent-Cloud-Plugins/tencentcloud-wordpress-plugin-sms" target="_blank">GitHub</a> | <a
+            <a href="https://openapp.qq.com/docs/Wordpress/sms.html" target="_blank">文档中心</a> | <a href="https://github.com/Tencent-Cloud-Plugins/tencentcloud-wordpress-plugin-sms" target="_blank">GitHub</a> | <a
                     href="https://support.qq.com/product/164613" target="_blank">意见反馈</a>
         </div>
     </div>
