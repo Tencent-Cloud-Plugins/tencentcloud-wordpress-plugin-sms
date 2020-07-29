@@ -1,6 +1,7 @@
 === 腾讯云短信（SMS） ===
-Tags: 腾讯云wordpress, SMS, 短信, 手机号, 腾讯云
-Donate link: https://openapp.qq.com/Wordpress/sms.html
+Contributors: TencentCloud
+Tags: 腾讯云, SMS, 短信, 登录, Tencent Cloud, qcloud, 春雨
+Donate link: https://openapp.qq.com/docs/Wordpress/sms.html
 Requires at least: 5.0
 Tested up to: 5.4.1
 Requires PHP: 5.6
@@ -18,6 +19,10 @@ tencentcloud-sms插件是一款腾讯云研发的，提供给WordPress站长使�
 5. 支持登录页面使用手机号+验证码登录
 6. 支持找回密码页面使用手机号+验证码
 
+本项目由腾讯云中小企业产品中心建设和维护，了解与该插件使用相关的更多信息，请访问[春雨文档中心](https://openapp.qq.com/docs/Wordpress/sms.html) 
+
+请通过[咨询建议](https://support.qq.com/products/164613) 向我们提交宝贵意见。
+
 == Installation ==
 1. 把tencentcloud-sms文件夹上传到/wp-content/plugins/目录下<br/>
 2. 在后台插件列表中启用腾讯云短信插件<br/>
@@ -25,6 +30,10 @@ tencentcloud-sms插件是一款腾讯云研发的，提供给WordPress站长使�
 
 == Screenshots ==
 1. screenshot-1.png
+2. screenshot-2.png
+3. screenshot-3.png
+4. screenshot-4.png
+5. screenshot-5.png
 
 == Changelog ==
 = 1.0.0 =
