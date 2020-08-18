@@ -70,7 +70,7 @@ function TencentWordpressSMSSettingPage()
                         <table class="form-table">
                             <tbody>
                             <tr>
-                                <th scope="row"><label for="sms-option-custom-key">自定义密钥</label></th>
+                                <th scope="row"><label for="sms-option-custom-key"><h5>自定义密钥</h5></label></th>
                                 <td>
                                     <div class="custom-control custom-switch div_custom_switch_padding_top">
                                         <input type="checkbox" class="custom-control-input"

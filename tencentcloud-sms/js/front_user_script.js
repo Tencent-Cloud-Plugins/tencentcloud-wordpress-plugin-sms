@@ -16,7 +16,6 @@
 jQuery(function ($) {
    // 重新获取验证码短信时间间隔
    var waitTime = 60;
-   var ajaxTips = $('#ajax-error-tips');
    function sendCountdown() {
       if (waitTime > 0) {
          $('#get_verify_code_btn').text(waitTime + '秒后重新获取验证码').attr("disabled", true);
@@ -100,11 +99,11 @@ jQuery(function ($) {
             switch (response.data.errorCode) {
                //手机号已被绑定
                case 100001:
-                  ajaxTips.show();
+                  $('#ajax-error-tips').show();
                   break;
                   //未绑定手机号
                case 100002:
-                  ajaxTips.text(response.data.msg).show();
+                  $('#ajax-error-tips').text(response.data.msg).show();
                   break;
                   default:
                   alert(response.data.msg);

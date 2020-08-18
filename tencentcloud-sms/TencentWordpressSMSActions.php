@@ -67,6 +67,11 @@ class TencentWordpressSMSActions
         self::getWpDbObject();
     }
 
+    public static function getTableName()
+    {
+        return self::$wpdb->prefix.self::TABLE_NAME;
+    }
+
     /**
      * 插件初始化
      */
@@ -99,7 +104,7 @@ class TencentWordpressSMSActions
     {
         self::requirePluginCenterClass();
         delete_option( TENCENT_WORDPRESS_SMS_OPTIONS );
-        $tableName = self::TABLE_NAME;
+        $tableName = self::getTableName();
         if (self::$wpdb->get_var("SHOW TABLES LIKE '{$tableName}'") === $tableName) {
             $sql = "DROP TABLE {$tableName};";
             self::$wpdb->query($sql);
@@ -126,31 +131,10 @@ class TencentWordpressSMSActions
         $staticData['data']['site_id'] = TencentWordpressPluginsSettingActions::getWordPressSiteID();
         $staticData['data']['site_url'] = TencentWordpressPluginsSettingActions::getWordPressSiteUrl();
         $staticData['data']['site_app'] = TencentWordpressPluginsSettingActions::getWordPressSiteApp();
-        $commonOption = get_option(TENCENT_WORDPRESS_COMMON_OPTIONS);
-        if (!empty($commonOption)) {
-            $staticData['data']['site_report_on'] = intval($commonOption['site_report_on']);
-            $staticData['data']['site_sec_on'] = intval($commonOption['site_sec_on']);
-            if ($commonOption['site_report_on'] === true && isset($commonOption['secret_id']) && isset($commonOption['secret_key'])) {
-                $staticData['data']['site_global_uin'] = TencentWordpressPluginsSettingActions::getUserUinBySecret($commonOption['secret_id'], $commonOption['secret_key']);
-            }
-        }
-
         $SMSOptions = self::getSMSOptionsObject();
-        if ($SMSOptions->getCustomKey() === $SMSOptions::CUSTOM_KEY) {
-            $staticData['data']['sms_uin'] = TencentWordpressPluginsSettingActions::getUserUinBySecret($SMSOptions->getSecretID(), $SMSOptions->getSecretKey());
-        }
-        $staticData['data']['sms_sec_on'] = $SMSOptions->getCustomKey();
-        $staticData['data']['sms_appid'] = $SMSOptions->getSDKAppID();
-        switch ($action){
-            case 'activate':
-            case 'save_configuration':
-                $staticData['data']['sms_on_at'] = time();
-                break;
-            case 'deactivate':
-            case 'uninstall':
-                $staticData['data']['sms_off_at'] = time();
-                break;
-        }
+        $staticData['data']['uin'] = TencentWordpressPluginsSettingActions::getUserUinBySecret($SMSOptions->getSecretID(), $SMSOptions->getSecretKey());
+        $staticData['data']['cust_sec_on'] = $SMSOptions->getCustomKey() === $SMSOptions::CUSTOM_KEY ? 1:2;
+        $data['data']['others'] = json_encode(array('sms_appid'=>$SMSOptions->getSDKAppID()));
         return $staticData;
     }
 
@@ -197,7 +181,7 @@ class TencentWordpressSMSActions
      */
     public static function createSMSSentRecordsTable()
     {
-        $tableName = self::TABLE_NAME;
+        $tableName = self::getTableName();
         if ( self::$wpdb->get_var("SHOW TABLES LIKE '{$tableName}'") !== $tableName ) {
             $sql = "CREATE TABLE IF NOT EXISTS `{$tableName}` (
 			`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -339,15 +323,15 @@ class TencentWordpressSMSActions
     private function getRecentVerifyCode($phone, $recentTime = 0)
     {
         $SMSOptions = self::getSMSOptionsObject();
-        $codeExpired = $recentTime;
-        if ( $recentTime === 0 && $SMSOptions->getHasExpiredTime() === TencentWordpressSMSOptions::HAS_EXPIRED_TIME ) {
-            $codeExpired = intval($SMSOptions->getCodeExpired());
+        $codeExpired = intval($SMSOptions->getCodeExpired());
+        if ( $recentTime > 0 ) {
+            $codeExpired = $recentTime;
         }
 
         $dateStart = date('Y-m-d H:i:s', time() - $codeExpired * 60);
         $dateEnd = date('Y-m-d H:i:s');
         $status = self::STATUS_SUCCESS;
-        $tableName = self::TABLE_NAME;
+        $tableName = self::getTableName();
         $query = "SELECT `id`,`verify_code` FROM `{$tableName}` WHERE `status`=%d AND `phone`= %s AND `send_date` BETWEEN %s AND %s ORDER BY `id` DESC";
         $result = self::$wpdb->get_row(self::$wpdb->prepare($query, $status, $phone, $dateStart, $dateEnd));
         if ( empty($result) ) {
@@ -513,7 +497,7 @@ class TencentWordpressSMSActions
      */
     private function loseCodeEfficacy($id)
     {
-        $tableName = self::TABLE_NAME;
+        $tableName = self::getTableName();
         $sql = "UPDATE `{$tableName}` SET `status`=%d WHERE `id`=%d";
         self::$wpdb->query(self::$wpdb->prepare($sql, self::STATUS_INVALID, $id));
     }
@@ -952,7 +936,7 @@ class TencentWordpressSMSActions
         if ( !is_string($response) ) {
             $response = wp_json_encode($response, JSON_UNESCAPED_SLASHES);
         }
-        $tableName = self::TABLE_NAME;
+        $tableName = self::getTableName();
 
         $sql = "INSERT INTO `{$tableName}` (`phone`, `verify_code`, `template_params`, `template_id`, `response`, `status`, `send_date`) VALUES (%s, %s, %s, %s, %s, %d, %s);";
         return self::$wpdb->query(self::$wpdb->prepare(
@@ -995,7 +979,7 @@ class TencentWordpressSMSActions
         if ( !empty($phone) && !is_numeric($phone) ) {
             wp_send_json_error(array('msg' => '手机号格式错误'));
         }
-        $tableName = self::TABLE_NAME;
+        $tableName = self::getTableName();
         if ( empty($phone) ) {
             $sql = "SELECT * FROM `{$tableName}` ORDER BY `id` DESC LIMIT {$skip},{$pageSize}";
             $result = self::$wpdb->get_results(self::$wpdb->prepare($sql));
@@ -1041,7 +1025,7 @@ class TencentWordpressSMSActions
             $SMSOptions->setCommentNeedPhone($this->filterPostParam('comment_need_phone', TencentWordpressSMSOptions::COMMENT_NEED_PHONE));
             $SMSOptions->setPostNeedPhone($this->filterPostParam('post_need_phone', TencentWordpressSMSOptions::POST_NEED_PHONE));
             self::requirePluginCenterClass();
-            $staticData = self::getTencentCloudWordPressStaticData('save_configuration');
+            $staticData = self::getTencentCloudWordPressStaticData('save_config');
             TencentWordpressPluginsSettingActions::sendUserExperienceInfo($staticData);
             update_option(TENCENT_WORDPRESS_SMS_OPTIONS, $SMSOptions, true);
             wp_send_json_success(array('msg' => '保存成功'));

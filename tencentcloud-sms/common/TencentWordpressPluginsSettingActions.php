@@ -32,8 +32,9 @@ if (!class_exists('TencentWordpressPluginsSettingActions')) {
         private static $initiated = false;
         private static $wpdb;
 
-        private static $log_server_url = 'localhost:8001';
+        private static $log_server_url = 'https://openapp.qq.com/api/public/index.php/upload';
         private static $site_app = 'WordPress';
+        private static $config_action = array('save_common_config', 'save_config');
         //表名
         const TABLE_NAME = 'wp_tencent_wordpress_options';
         //插件开启
@@ -126,20 +127,10 @@ if (!class_exists('TencentWordpressPluginsSettingActions')) {
                 )
             );
             $common_option = get_option(TENCENT_WORDPRESS_COMMON_OPTIONS);
-            if (!empty($common_option)) {
-                $site_report_on = (int)$common_option['site_report_on'];
-                $site_sec_on = (int)$common_option['site_sec_on'];
-                $static_data['data']['site_report_on'] = $site_report_on;
-                $static_data['data']['site_sec_on'] = $site_sec_on;
-                if ($common_option['site_report_on'] === true && isset($common_option['secret_id']) && isset($common_option['secret_key'])) {
-                    $static_data['data']['site_global_uin'] = self::getUserUinBySecret($common_option['secret_id'], $common_option['secret_key']);
-                }
-                if ($common_option['site_sec_on'] === true) {
-                    $static_data['data']['secret_on_at'] = time();
-                } else {
-                    $static_data['data']['secret_off_at'] = time();
-                }
+            if (isset($common_option['secret_id']) && isset($common_option['secret_key'])) {
+                $static_data['data']['uin'] = self::getUserUinBySecret($common_option['secret_id'], $common_option['secret_key']);
             }
+
             self::sendUserExperienceInfo($static_data);
         }
 
@@ -428,17 +419,21 @@ if (!class_exists('TencentWordpressPluginsSettingActions')) {
          */
         public static function sendUserExperienceInfo($data)
         {
-            if (empty($data) || !is_array($data)) {
+            if (empty($data) || !is_array($data) || !isset($data['action'])) {
                 return ;
             }
             $common_option = get_option(TENCENT_WORDPRESS_COMMON_OPTIONS);
-            // 未参与用户体验优化项目，则不发送插件的使用信息
-            if (isset($common_option['site_report_on']) && $common_option['site_report_on'] === false) {
-                return false;
-            }
             $url = self::getLogServerUrl();
 
-            self::sendPostRequest($url, $data);
+            if (in_array($data['action'], self::$config_action)) {
+                self::sendPostRequest($url, $data);
+                return true;
+            } elseif (isset($common_option['site_report_on']) && $common_option['site_report_on'] === true) {
+                self::sendPostRequest($url, $data);
+                return true;
+            } else {
+                return false;
+            }
         }
 
         /**
