@@ -95,7 +95,6 @@ jQuery(function ($) {
             check_phone_used:checkPhoneUsed
          },
          success: function (response) {
-            console.log(response);
             switch (response.data.errorCode) {
                //手机号已被绑定
                case 100001:

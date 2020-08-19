@@ -46,7 +46,6 @@ jQuery(function ($) {
             check_phone_used:'check'
          },
          success: function (response) {
-            console.log(response);
             if (response.data.errorCode === 100001) {
                $('#ajax-error-tips').show();
             }

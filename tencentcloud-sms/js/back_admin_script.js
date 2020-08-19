@@ -187,7 +187,6 @@ jQuery(function ($) {
             custom_key: customKey,
          },
          success: function (response) {
-            console.log(response);
             showAjaxReturnMsg(response.data.msg,response.success);
             if (response.success){
                sendCountdown();
@@ -248,7 +247,6 @@ jQuery(function ($) {
             page_size:pageSize
          },
          success: function(response) {
-            console.log(response);
             var list = response.data.list;
             var html = '';
             var status = '';
