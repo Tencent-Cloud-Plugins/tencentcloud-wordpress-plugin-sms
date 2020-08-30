@@ -10,8 +10,8 @@
 | 最新版本   | v1.0.0 (2020.06.22)                                           |
 | 适用平台 | [WordPress](https://wordpress.org/)                             |
 | 适用产品 | [腾讯云短信（SMS）](https://cloud.tencent.com/product/sms)      |
-| GitHub项目   | [tencentcloud-wordpress-plugin-sms](https://github.com/Tencent-Cloud-Plugins/tencentcloud-wordpress-plugin-sms) |
-| 主创团队   | 腾讯云中小企业产品中心（SMB Product Center of Tencent Cloud）             |
+| 文档中心   | [春雨文档中心](https://openapp.qq.com/docs/Wordpress/sms.html) |
+| 主创团队   | 腾讯云中小企业产品中心（SMB Product Center of Tencent Cloud）    |
 
 ## 2.功能特性
 
@@ -93,3 +93,8 @@
 - 支持验证手机号后才能发布文章
 - 支持登录页面使用手机号+验证码登录
 - 支持找回密码页面使用手机号+验证码
+
+---
+本项目由腾讯云中小企业产品中心建设和维护，了解与该插件使用相关的更多信息，请访问[春雨文档中心](https://openapp.qq.com/docs/Wordpress/sms.html) 
+
+请通过[咨询建议](https://support.qq.com/products/164613) 向我们提交宝贵意见。
