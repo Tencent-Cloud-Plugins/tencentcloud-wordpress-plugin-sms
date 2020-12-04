@@ -694,7 +694,7 @@ class TencentWordpressSMSActions
             }
 
             $response = self::sendSMS(array($phone), $SMSOptions, $templateParams);
-            if ( $response['SendStatusSet'][0]['Fee'] !== 1 || $response['SendStatusSet'][0]['Code'] !== 'Ok' ) {
+            if ( !in_array($response['SendStatusSet'][0]['Fee'], [1, 2]) || $response['SendStatusSet'][0]['Code'] !== 'Ok' ) {
                 $errorCode = $response['errorCode'] ?: $response['SendStatusSet'][0]['Code'];
                 $msg = self::$errorCodeDesc[$errorCode];
                 wp_send_json_error(array('msg' => '发送失败：' . $msg));
@@ -763,7 +763,7 @@ class TencentWordpressSMSActions
             }
             $response = self::sendSMS(array($phone), $SMSOptions, $templateParams);
             $status = self::STATUS_SUCCESS;
-            if ( $response['SendStatusSet'][0]['Fee'] !== 1 || $response['SendStatusSet'][0]['Code'] !== 'Ok' ) {
+            if ( !in_array($response['SendStatusSet'][0]['Fee'], [1, 2]) || $response['SendStatusSet'][0]['Code'] !== 'Ok' ) {
                 $status = self::STATUS_FAIL;
             }
             //记录发送结果
