@@ -244,7 +244,7 @@ function TencentWordpressSMSSettingPage()
         <button type="button" id="tencnetcloud-sms-setting-update-button" class="btn btn-primary">保存设置</button>
         <div style="text-align: center;flex: 0 0 auto;margin-top: 3rem;">
             <a href="https://openapp.qq.com/docs/Wordpress/sms.html" target="_blank">文档中心</a> | <a href="https://github.com/Tencent-Cloud-Plugins/tencentcloud-wordpress-plugin-sms" target="_blank">GitHub</a> | <a
-                    href="https://support.qq.com/product/164613" target="_blank">意见反馈</a>
+                    href="https://da.do/y0rp" target="_blank">意见反馈</a>
         </div>
     </div>
 <?php

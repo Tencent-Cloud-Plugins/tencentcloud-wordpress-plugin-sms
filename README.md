@@ -7,7 +7,7 @@
 | ---------- | ------------------------------------------------------------ |
 | 中文名称     | 腾讯云短信（SMS）插件                                         |
 | 英文名称   | tencentcloud-sms                                       |
-| 最新版本   | v1.0.0 (2020.06.22)                                           |
+| 最新版本   | v1.0.2 (2020.12.11)                                           |
 | 适用平台 | [WordPress](https://wordpress.org/)                             |
 | 适用产品 | [腾讯云短信（SMS）](https://cloud.tencent.com/product/sms)      |
 | 文档中心   | [春雨文档中心](https://openapp.qq.com/docs/Wordpress/sms.html) |
@@ -75,18 +75,20 @@
 | GitHub            | [link](https://github.com/Tencent-Cloud-Plugins/tencentcloud-wordpress-plugin-sms)   |
 | WordPress插件中心 |  [link](https://wordpress.org/plugins/tencentcloud-sms)   |
 
-
 ## 6.FAQ
 
 > 暂无
 
 ## 7.GitHub版本迭代记录
 
-### 7.2 tencentcloud-wordpress-plugin-sms v1.0.1
+### 2020.12.11 tencentcloud-wordpress-plugin-ims v1.0.2
+- 支持在windows环境下运行
+
+### 2020.7.22 tencentcloud-wordpress-plugin-sms v1.0.1
 - 验证码过期时间错误判断Bug修复
 - windows环境下样式加载问题
 
-### 7.1 tencentcloud-wordpress-plugin-sms v1.0.0
+### 2020.6.22 tencentcloud-wordpress-plugin-sms v1.0.0
 - 支持在个人资料页绑定手机号
 - 支持登录页面进行绑定手机号
 - 支持在评论时对用户手机号进行验证

@@ -5,7 +5,7 @@ Donate link: https://openapp.qq.com/docs/Wordpress/sms.html
 Requires at least: 5.0
 Tested up to: 5.4.1
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: Apache 2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0.txt
 
@@ -36,6 +36,13 @@ tencentcloud-sms插件是一款腾讯云研发的，提供给WordPress站长使�
 5. screenshot-5.png
 
 == Changelog ==
+= 1.0.2 =
+1. 支持在windows环境下运行
+
+= 1.0.1 =
+1. 验证码过期判断Bug修复
+2. windows环境下样式加载问题
+
 = 1.0.0 =
 1. 支持在个人资料页绑定手机号
 2. 支持登录页面进行绑定手机号
@@ -43,3 +50,5 @@ tencentcloud-sms插件是一款腾讯云研发的，提供给WordPress站长使�
 4. 支持验证手机号后才能发布文章
 5. 支持登录页面使用手机号+验证码登录
 6. 支持找回密码页面使用手机号+验证码
+
+
