@@ -19,13 +19,13 @@
  * Plugin URI: https://openapp.qq.com/docs/Wordpress/sms.html
  * Author URI: https://cloud.tencent.com/product/sms
  * Description: 通过腾讯云短信服务使网站支持手机号登录,通过手机号+短信验证码找回密码等功能。
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: 腾讯云
  *
 */
 date_default_timezone_set('Asia/Shanghai');
 
-defined('TENCENT_WORDPRESS_SMS_VERSION')||define( 'TENCENT_WORDPRESS_SMS_VERSION', '1.0.0' );
+defined('TENCENT_WORDPRESS_SMS_VERSION')||define( 'TENCENT_WORDPRESS_SMS_VERSION', '1.0.2' );
 defined('TENCENT_WORDPRESS_SMS_OPTIONS')||define( 'TENCENT_WORDPRESS_SMS_OPTIONS', 'tencent_wordpress_sms_options' );
 defined('TENCENT_WORDPRESS_SMS_DIR')||define( 'TENCENT_WORDPRESS_SMS_DIR', plugin_dir_path( __FILE__ ) );
 defined('TENCENT_WORDPRESS_SMS_BASENAME')||define( 'TENCENT_WORDPRESS_SMS_BASENAME', plugin_basename(__FILE__));
@@ -37,7 +37,7 @@ defined('TENCENT_WORDPRESS_SMS_NAME')||define( 'TENCENT_WORDPRESS_SMS_NAME', 'te
 defined('TENCENT_WORDPRESS_COMMON_OPTIONS')||define( 'TENCENT_WORDPRESS_COMMON_OPTIONS', 'tencent_wordpress_common_options' );
 defined('TENCENT_WORDPRESS_SMS_SHOW_NAME')||define( 'TENCENT_WORDPRESS_SMS_SHOW_NAME', 'tencentcloud-sms');
 defined('TENCENT_WORDPRESS_PLUGINS_COMMON_URL')||define('TENCENT_WORDPRESS_PLUGINS_COMMON_URL', TENCENT_WORDPRESS_SMS_URL . '/common/');
-defined('TENCENT_WORDPRESS_PLUGINS_COMMON_DIR')||define('TENCENT_WORDPRESS_PLUGINS_COMMON_DIR', TENCENT_WORDPRESS_SMS_DIR . 'common' . DIRECTORY_SEPARATOR);
+defined('TENCENT_WORDPRESS_PLUGINS_COMMON_DIR')||define('TENCENT_WORDPRESS_PLUGINS_COMMON_DIR', TENCENT_WORDPRESS_SMS_DIR . 'common/');
 defined('TENCENT_WORDPRESS_PLUGINS_COMMON_CSS_URL')||define('TENCENT_WORDPRESS_PLUGINS_COMMON_CSS_URL', TENCENT_WORDPRESS_PLUGINS_COMMON_URL . 'css/');
 
 if (!is_file(TENCENT_WORDPRESS_SMS_DIR.'vendor/autoload.php')) {
