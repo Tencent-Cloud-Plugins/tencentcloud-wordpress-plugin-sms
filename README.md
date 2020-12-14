@@ -75,7 +75,6 @@
 | GitHub            | [link](https://github.com/Tencent-Cloud-Plugins/tencentcloud-wordpress-plugin-sms)   |
 | WordPress插件中心 |  [link](https://wordpress.org/plugins/tencentcloud-sms)   |
 
-
 ## 6.FAQ
 
 > 暂无
